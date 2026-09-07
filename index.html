@@ -8,7 +8,7 @@
   <title>Programmer un drone Tello | Innocent Twagirumukiza</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     (function(){
@@ -55,34 +55,16 @@
 
   <main id="top">
 
-    <!-- HERO : bande illustrée + carrousel de sections -->
+    <!-- HERO : slogan + carrousel de sections -->
     <section class="hero-band">
       <button type="button" class="hero-arrow prev" id="hero-prev" aria-label="Section précédente">‹</button>
-      <div class="hero-illustration" aria-hidden="true">
-        <svg viewBox="0 0 640 320" width="100%" role="img">
-          <path d="M40 230 C 140 150, 220 140, 300 90" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8"/>
-          <polygon points="300,90 340,70 322,110 300,100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-          <g transform="translate(400,150)">
-            <circle cx="-70" cy="-40" r="26" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="70" cy="-40" r="26" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="-70" cy="40" r="26" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="70" cy="40" r="26" fill="none" stroke="currentColor" stroke-width="3"/>
-            <rect x="-45" y="-22" width="90" height="44" rx="10" fill="currentColor"/>
-            <line x1="-70" y1="-40" x2="-45" y2="-22" stroke="currentColor" stroke-width="3"/>
-            <line x1="70" y1="-40" x2="45" y2="-22" stroke="currentColor" stroke-width="3"/>
-            <line x1="-70" y1="40" x2="-45" y2="22" stroke="currentColor" stroke-width="3"/>
-            <line x1="70" y1="40" x2="45" y2="22" stroke="currentColor" stroke-width="3"/>
-          </g>
-          <text x="150" y="70" font-family="monospace" font-size="26" fill="currentColor">&lt;/&gt;</text>
-          <text x="540" y="250" font-family="monospace" font-size="22" fill="currentColor">{ }</text>
-          <circle cx="90" cy="260" r="4" fill="currentColor"/>
-          <circle cx="115" cy="255" r="3" fill="currentColor"/>
-          <circle cx="560" cy="70" r="4" fill="currentColor"/>
-          <g transform="translate(560,55) rotate(-14)">
-            <circle r="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <text x="0" y="5" font-family="'Space Grotesk',sans-serif" font-size="9" text-anchor="middle" fill="currentColor" letter-spacing="1">TELLO · CODE</text>
-          </g>
-        </svg>
+      <div class="hero-slogan">
+        <p class="eyebrow i18n-fr">PROGRAMMATION · PYTHON · DRONE</p>
+        <p class="eyebrow i18n-en">PROGRAMMING · PYTHON · DRONE</p>
+        <h1 class="slogan i18n-fr">*Coder,<br>c'est <u>voler</u>.</h1>
+        <h1 class="slogan i18n-en">*Code is<br><u>flight</u>.</h1>
+        <p class="slogan-sub i18n-fr">Et si votre avion de papier pouvait voler seul ?</p>
+        <p class="slogan-sub i18n-en">What if your paper airplane could fly on its own?</p>
       </div>
       <button type="button" class="hero-arrow next" id="hero-next" aria-label="Section suivante">›</button>
       <div class="hero-dots" id="hero-dots">
