@@ -90,49 +90,23 @@ var fsInc = document.getElementById("fs-inc");
 if (fsDec) fsDec.addEventListener("click", function () { currentFs = applyFontScale(currentFs - FS_STEP); });
 if (fsInc) fsInc.addEventListener("click", function () { currentFs = applyFontScale(currentFs + FS_STEP); });
 
-/* ---------- Carrousel du bandeau héros (points = sections) ---------- */
-var sectionIds = ["livre", "histoire", "auteur", "acheter"];
-var dots = Array.prototype.slice.call(document.querySelectorAll(".dot"));
-var heroPrev = document.getElementById("hero-prev");
-var heroNext = document.getElementById("hero-next");
-var activeIndex = 0;
+/* ---------- Menu burger (tablette / mobile) ---------- */
+var burgerToggle = document.getElementById("burger-toggle");
+var mobileMenu = document.getElementById("mobile-menu");
 
-function setActiveDot(index) {
-  activeIndex = ((index % sectionIds.length) + sectionIds.length) % sectionIds.length;
-  dots.forEach(function (d, i) { d.classList.toggle("active", i === activeIndex); });
+function closeMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove("open");
+  if (burgerToggle) burgerToggle.setAttribute("aria-expanded", "false");
 }
 
-function goToSection(index) {
-  setActiveDot(index);
-  var el = document.getElementById(sectionIds[activeIndex]);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+if (burgerToggle && mobileMenu) {
+  burgerToggle.addEventListener("click", function () {
+    var isOpen = mobileMenu.classList.toggle("open");
+    burgerToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+  mobileMenu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMobileMenu);
+  });
 }
 
-dots.forEach(function (dot, i) {
-  dot.addEventListener("click", function () { goToSection(i); });
-});
-if (heroPrev) heroPrev.addEventListener("click", function () { goToSection(activeIndex - 1); });
-if (heroNext) heroNext.addEventListener("click", function () { goToSection(activeIndex + 1); });
-
-setActiveDot(0);
-
-// Met à jour le point actif pendant le défilement
-if ("IntersectionObserver" in window) {
-  var sections = sectionIds
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
-
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var idx = sectionIds.indexOf(entry.target.id);
-          if (idx !== -1) setActiveDot(idx);
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
-  );
-
-  sections.forEach(function (s) { observer.observe(s); });
-}

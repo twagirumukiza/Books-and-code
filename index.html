@@ -38,6 +38,16 @@
       </svg>
       <span class="brand-word">tello<br>code</span>
     </a>
+
+    <nav class="nav-links">
+      <a href="#livre"><span class="i18n-fr">Le livre</span><span class="i18n-en">The book</span></a>
+      <a href="#histoire"><span class="i18n-fr">L'histoire</span><span class="i18n-en">The story</span></a>
+      <a href="#auteur"><span class="i18n-fr">L'auteur</span><span class="i18n-en">The author</span></a>
+      <a href="#acheter"><span class="i18n-fr">Acheter</span><span class="i18n-en">Buy</span></a>
+      <a href="https://twagirumukiza.github.io/Twagirumukiza-Innocent/" target="_blank" rel="noopener"><span class="i18n-fr">Site perso</span><span class="i18n-en">Website</span></a>
+      <a href="https://www.linkedin.com/in/innocent-twagirumukiza" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+
     <div class="toolbar" role="group" aria-label="Préférences d'affichage">
       <div class="tb-group lang-switch">
         <button type="button" class="tb-btn lang-btn" data-lang-btn="fr" aria-pressed="true">FR</button>
@@ -50,14 +60,25 @@
       <button type="button" class="tb-btn theme-btn" id="theme-toggle" aria-label="Changer de thème">
         <span class="theme-icon-light">☀</span><span class="theme-icon-dark">☾</span>
       </button>
+      <button type="button" class="burger" id="burger-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#livre"><span class="i18n-fr">Le livre</span><span class="i18n-en">The book</span></a>
+      <a href="#histoire"><span class="i18n-fr">L'histoire</span><span class="i18n-en">The story</span></a>
+      <a href="#auteur"><span class="i18n-fr">L'auteur</span><span class="i18n-en">The author</span></a>
+      <a href="#acheter"><span class="i18n-fr">Acheter</span><span class="i18n-en">Buy</span></a>
+      <a href="https://twagirumukiza.github.io/Twagirumukiza-Innocent/" target="_blank" rel="noopener"><span class="i18n-fr">Site perso</span><span class="i18n-en">Website</span></a>
+      <a href="https://www.linkedin.com/in/innocent-twagirumukiza" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </header>
 
   <main id="top">
 
-    <!-- HERO : slogan + carrousel de sections -->
+    <!-- HERO : slogan -->
     <section class="hero-band">
-      <button type="button" class="hero-arrow prev" id="hero-prev" aria-label="Section précédente">‹</button>
       <div class="hero-slogan">
         <p class="eyebrow i18n-fr">PROGRAMMATION · PYTHON · DRONE</p>
         <p class="eyebrow i18n-en">PROGRAMMING · PYTHON · DRONE</p>
@@ -65,13 +86,6 @@
         <h1 class="slogan i18n-en">*Code is<br><u>flight</u>.</h1>
         <p class="slogan-sub i18n-fr">Et si votre avion de papier pouvait voler seul ?</p>
         <p class="slogan-sub i18n-en">What if your paper airplane could fly on its own?</p>
-      </div>
-      <button type="button" class="hero-arrow next" id="hero-next" aria-label="Section suivante">›</button>
-      <div class="hero-dots" id="hero-dots">
-        <button type="button" class="dot" data-target="livre" aria-label="Le livre"></button>
-        <button type="button" class="dot" data-target="histoire" aria-label="L'histoire"></button>
-        <button type="button" class="dot" data-target="auteur" aria-label="L'auteur"></button>
-        <button type="button" class="dot" data-target="acheter" aria-label="Acheter"></button>
       </div>
     </section>
 

@@ -41,9 +41,13 @@ img{max-width:100%;display:block}
 ul{list-style:none}
 
 /* ---------- NAV ---------- */
-.nav{padding:18px 5vw;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.nav{padding:18px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
 .brand-word{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:calc(14px * var(--fs));line-height:1.15;text-transform:lowercase}
+
+.nav-links{display:flex;align-items:center;gap:22px;font-size:calc(14px * var(--fs));font-weight:600}
+.nav-links a:hover{text-decoration:underline;text-underline-offset:4px}
+
 .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tb-group{display:flex;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
 .tb-btn{border:none;background:transparent;color:var(--ink);font-family:inherit;font-weight:700;font-size:12px;padding:7px 10px;cursor:pointer}
@@ -55,20 +59,25 @@ ul{list-style:none}
 html[data-theme="dark"] .theme-icon-light{display:none}
 html[data-theme="dark"] .theme-icon-dark{display:inline}
 
+/* Burger (masqué par défaut, visible en dessous du breakpoint tablette) */
+.burger{display:none;width:34px;height:34px;border:1.5px solid var(--ink);border-radius:6px;background:transparent;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.burger span{display:block;width:16px;height:2px;background:var(--ink)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.mobile-menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1.5px solid var(--ink);padding:8px 5vw 18px;z-index:30}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:12px 0;font-size:calc(16px * var(--fs));font-weight:600;border-top:1px solid color-mix(in srgb, var(--ink) 15%, transparent)}
+.mobile-menu a:first-child{border-top:none}
+
 /* ---------- HERO BAND ---------- */
-.hero-band{position:relative;background:var(--peach);padding:64px 9vw 56px;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:340px}
+.hero-band{position:relative;background:var(--peach);padding:64px 9vw 56px;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:280px}
 .hero-slogan{max-width:720px;text-align:center}
 .hero-slogan .eyebrow{color:var(--muted)}
 .slogan{font-family:"Fraunces",serif;font-style:italic;font-weight:700;font-size:clamp(calc(40px * var(--fs)),7vw,calc(84px * var(--fs)));line-height:1.02;letter-spacing:-1px;margin:14px 0 20px}
 .slogan u{text-decoration-thickness:3px;text-underline-offset:6px}
 .slogan-sub{font-family:Inter,sans-serif;font-style:normal;font-weight:600;font-size:calc(16px * var(--fs));color:var(--muted)}
-.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
-.hero-arrow.prev{left:4vw}
-.hero-arrow.next{right:4vw}
-.hero-arrow:hover{background:var(--ink);color:var(--bg)}
-.hero-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
-.dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;padding:0;cursor:pointer}
-.dot.active{background:var(--ink)}
 
 /* ---------- QUICK NAV ---------- */
 .quicknav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--cream)}
@@ -146,11 +155,12 @@ footer{padding:26px 6vw;display:flex;gap:20px;align-items:center;justify-content
   .quicknav{grid-template-columns:repeat(2,1fr)}
   .quicknav a:nth-child(3){border-left:none}
   .triptych{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .burger{display:flex}
 }
 @media(max-width:560px){
   .nav{padding:14px 5vw}
-  .hero-band{padding:22px 6vw 40px}
-  .hero-arrow{width:32px;height:32px;font-size:16px}
+  .hero-band{padding:36px 6vw}
   .cell{padding:34px 6vw}
   .diamond-cell{gap:20px}
   .diamond{width:84px;height:84px}
