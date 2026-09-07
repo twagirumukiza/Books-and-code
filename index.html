@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Programmer un drone Tello — Maîtrisez le Tello avec Python, du premier vol aux projets autonomes. Livre d'Innocent Twagirumukiza.">
+  <meta name="author" content="Innocent Twagirumukiza">
+  <title>Programmer un drone Tello | Innocent Twagirumukiza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function(){
+      var lang = localStorage.getItem('tc-lang') || 'fr';
+      var theme = localStorage.getItem('tc-theme') || 'light';
+      var fs = localStorage.getItem('tc-fs') || '1';
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.style.setProperty('--fs', fs);
+    })();
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top">TELLO<span>CODE</span></a>
+    <nav>
+      <a href="#histoire"><span class="i18n-fr">L'histoire</span><span class="i18n-en">The story</span></a>
+      <a href="#livre"><span class="i18n-fr">Le livre</span><span class="i18n-en">The book</span></a>
+      <a href="#auteur"><span class="i18n-fr">L'auteur</span><span class="i18n-en">The author</span></a>
+      <a href="#acheter" class="nav-cta"><span class="i18n-fr">Acheter</span><span class="i18n-en">Buy</span></a>
+    </nav>
+    <div class="toolbar" role="group" aria-label="Préférences d'affichage">
+      <div class="tb-group lang-switch">
+        <button type="button" class="tb-btn lang-btn" data-lang-btn="fr" aria-pressed="true">FR</button>
+        <button type="button" class="tb-btn lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="tb-group">
+        <button type="button" class="tb-btn" id="fs-dec" aria-label="Réduire la taille du texte">A−</button>
+        <button type="button" class="tb-btn" id="fs-inc" aria-label="Augmenter la taille du texte">A+</button>
+      </div>
+      <button type="button" class="tb-btn theme-btn" id="theme-toggle" aria-label="Changer de thème">
+        <span class="theme-icon-light">☀️</span><span class="theme-icon-dark">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-blob"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="i18n-fr">PROGRAMMATION · PYTHON · DRONE</span>
+          <span class="i18n-en">PROGRAMMING · PYTHON · DRONE</span>
+        </p>
+        <h1 class="i18n-fr">Et si votre<br><span class="accent">avion de papier</span><br>pouvait voler seul ?</h1>
+        <h1 class="i18n-en">What if your<br><span class="accent">paper airplane</span><br>could fly on its own?</h1>
+
+        <p class="lead i18n-fr">
+          On a tous, un jour, plié une feuille de papier et lancé un avion dans les airs.
+          Quelques secondes de vol… puis l'envie de recommencer, de modifier l'aile,
+          de le faire aller plus loin.
+        </p>
+        <p class="lead i18n-en">
+          We've all folded a sheet of paper one day and thrown a plane into the air.
+          A few seconds of flight… then the urge to try again, tweak the wing,
+          make it go further.
+        </p>
+        <p class="lead i18n-fr">
+          Ce livre poursuit cette idée avec un vrai drone : <strong>le Tello</strong>.
+          Cette fois, ce n'est plus votre main qui commande le mouvement : <strong>c'est votre code.</strong>
+        </p>
+        <p class="lead i18n-en">
+          This book carries that idea further with a real drone: <strong>the Tello</strong>.
+          This time, it's not your hand commanding the movement — <strong>it's your code.</strong>
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary i18n-fr" href="#acheter">Découvrir le livre <span>→</span></a>
+          <a class="btn btn-primary i18n-en" href="#acheter">Discover the book <span>→</span></a>
+          <a class="btn btn-ghost i18n-fr" href="#histoire">Commencer l'histoire</a>
+          <a class="btn btn-ghost i18n-en" href="#histoire">Start the story</a>
+        </div>
+
+        <div class="trust-row i18n-fr">
+          <span>🐍 Python</span>
+          <span>✈️ Tello</span>
+          <span>💻 Exemples de code</span>
+          <span>🚀 Projets pratiques</span>
+        </div>
+        <div class="trust-row i18n-en">
+          <span>🐍 Python</span>
+          <span>✈️ Tello</span>
+          <span>💻 Code examples</span>
+          <span>🚀 Hands-on projects</span>
+        </div>
+      </div>
+      <div class="hero-book">
+        <div class="glow"></div>
+        <img src="assets/couverture-tello.jpg" alt="Couverture du livre Programmer un drone Tello">
+        <div class="book-caption i18n-fr">MAÎTRISEZ LE TELLO AVEC PYTHON</div>
+        <div class="book-caption i18n-en">MASTER THE TELLO WITH PYTHON</div>
+      </div>
+    </section>
+
+    <section class="story section" id="histoire">
+      <div class="section-label i18n-fr">01 — L'IDÉE</div>
+      <div class="section-label i18n-en">01 — THE IDEA</div>
+      <div class="story-grid">
+        <div>
+          <h2 class="i18n-fr">Du papier à<br><span class="accent">la programmation</span></h2>
+          <h2 class="i18n-en">From paper<br><span class="accent">to programming</span></h2>
+        </div>
+        <div class="story-text i18n-fr">
+          <p class="big">
+            Souvenez-vous de cet avion de papier que vous lanciez dans la cour,
+            dans votre chambre ou depuis le bord d'une table.
+          </p>
+          <p>
+            Nous étions fascinés par une chose toute simple : <strong>faire voler quelque chose que nous avions fabriqué.</strong>
+            Puis, avec le temps, la question change.
+            Et si nous pouvions décider précisément de sa trajectoire ?
+            Et s'il pouvait tourner, monter, avancer… sans que nous le poussions ?
+          </p>
+          <p>
+            Le drone transforme cette curiosité d'enfant en terrain d'expérimentation.
+            La programmation ajoute une nouvelle dimension : <strong>vous imaginez le mouvement,
+            vous l'écrivez, puis vous observez le résultat dans le monde réel.</strong>
+          </p>
+          <div class="quote">
+            <span>“</span>
+            Programmer un drone, c'est donner des ailes à une idée.
+          </div>
+        </div>
+        <div class="story-text i18n-en">
+          <p class="big">
+            Remember that paper plane you launched in the yard,
+            in your bedroom, or off the edge of a table.
+          </p>
+          <p>
+            We were fascinated by one simple thing: <strong>making something we'd built fly.</strong>
+            Then, over time, the question changes.
+            What if we could decide its exact path?
+            What if it could turn, climb, move forward… without us pushing it?
+          </p>
+          <p>
+            The drone turns that childhood curiosity into a playground for experimenting.
+            Programming adds a new dimension: <strong>you imagine the movement,
+            you write it, then you watch the result play out in the real world.</strong>
+          </p>
+          <div class="quote">
+            <span>“</span>
+            Programming a drone means giving wings to an idea.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="book section" id="livre">
+      <div class="section-label i18n-fr">02 — LE LIVRE</div>
+      <div class="section-label i18n-en">02 — THE BOOK</div>
+      <div class="book-grid">
+        <div class="book-visual">
+          <img src="assets/couverture-tello.jpg" alt="Livre Programmer un drone Tello">
+        </div>
+        <div class="book-info">
+          <p class="eyebrow i18n-fr">PROGRAMMER UN DRONE TELLO</p>
+          <p class="eyebrow i18n-en">PROGRAMMING A TELLO DRONE</p>
+          <h2 class="i18n-fr">Apprendre à coder.<br><span class="accent">Voir son code voler.</span></h2>
+          <h2 class="i18n-en">Learn to code.<br><span class="accent">Watch your code fly.</span></h2>
+          <p class="i18n-fr">
+            De la prise en main aux projets avancés, ce guide vous accompagne
+            pas à pas pour découvrir la programmation d'un Tello avec Python.
+          </p>
+          <p class="i18n-en">
+            From your very first flight to advanced projects, this guide walks you
+            step by step through programming a Tello with Python.
+          </p>
+          <div class="features i18n-fr">
+            <div class="feature">
+              <b>01</b>
+              <div><strong>Python</strong><small>Pour débutants et confirmés</small></div>
+            </div>
+            <div class="feature">
+              <b>02</b>
+              <div><strong>SDK Tello</strong><small>Commandes, connexion, vidéo et télémétrie</small></div>
+            </div>
+            <div class="feature">
+              <b>03</b>
+              <div><strong>Projets pratiques</strong><small>Trajectoires, automatisation, détection, suivi…</small></div>
+            </div>
+            <div class="feature">
+              <b>04</b>
+              <div><strong>Exemples de code</strong><small>Explicites, progressifs et commentés</small></div>
+            </div>
+          </div>
+          <div class="features i18n-en">
+            <div class="feature">
+              <b>01</b>
+              <div><strong>Python</strong><small>For beginners and experienced coders</small></div>
+            </div>
+            <div class="feature">
+              <b>02</b>
+              <div><strong>Tello SDK</strong><small>Commands, connection, video and telemetry</small></div>
+            </div>
+            <div class="feature">
+              <b>03</b>
+              <div><strong>Hands-on projects</strong><small>Flight paths, automation, detection, tracking…</small></div>
+            </div>
+            <div class="feature">
+              <b>04</b>
+              <div><strong>Code examples</strong><small>Clear, progressive and well-commented</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience section">
+      <div class="section-label i18n-fr">03 — L'EXPÉRIENCE</div>
+      <div class="section-label i18n-en">03 — THE EXPERIENCE</div>
+      <div class="experience-head i18n-fr">
+        <h2>Pas seulement<br><span class="accent">un livre technique.</span></h2>
+        <p>
+          L'objectif est de créer un pont entre trois mondes :
+          la curiosité, le code et le mouvement.
+        </p>
+      </div>
+      <div class="experience-head i18n-en">
+        <h2>Not just<br><span class="accent">a technical book.</span></h2>
+        <p>
+          The goal is to build a bridge between three worlds:
+          curiosity, code and movement.
+        </p>
+      </div>
+      <div class="cards i18n-fr">
+        <article class="card">
+          <div class="card-icon">⌨</div>
+          <h3>Écrire</h3>
+          <p>Comprendre les instructions Python et construire progressivement ses premiers programmes.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">◉</div>
+          <h3>Tester</h3>
+          <p>Connecter le programme au Tello et transformer une ligne de code en action concrète.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">✦</div>
+          <h3>Créer</h3>
+          <p>Aller plus loin avec des trajectoires, des automatismes et des projets qui donnent envie d'expérimenter.</p>
+        </article>
+      </div>
+      <div class="cards i18n-en">
+        <article class="card">
+          <div class="card-icon">⌨</div>
+          <h3>Write</h3>
+          <p>Understand Python instructions and progressively build your first programs.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">◉</div>
+          <h3>Test</h3>
+          <p>Connect the program to the Tello and turn a line of code into a real action.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">✦</div>
+          <h3>Create</h3>
+          <p>Go further with flight paths, automations and projects that make you want to experiment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="author section" id="auteur">
+      <div class="author-photo">
+        <img src="assets/innocent-twagirumukiza.jpg" alt="Innocent Twagirumukiza avec un drone Tello">
+      </div>
+      <div class="author-copy">
+        <div class="section-label i18n-fr">04 — L'AUTEUR</div>
+        <div class="section-label i18n-en">04 — THE AUTHOR</div>
+        <h2>Innocent<br><span class="accent">Twagirumukiza</span></h2>
+        <p class="i18n-fr">
+          Formateur et passionné par les technologies numériques, j'aime transformer
+          des concepts techniques en expériences concrètes et accessibles.
+        </p>
+        <p class="i18n-en">
+          A trainer passionate about digital technology, I love turning
+          technical concepts into concrete, approachable experiences.
+        </p>
+        <p class="i18n-fr">
+          Avec ce livre, l'idée est simple : <strong>ne pas rester spectateur de la technologie.</strong>
+          Prenez un drone, ouvrez votre éditeur de code, essayez, observez, corrigez… et recommencez.
+        </p>
+        <p class="i18n-en">
+          With this book, the idea is simple: <strong>stop watching technology from the sidelines.</strong>
+          Take a drone, open your code editor, try, observe, fix… and try again.
+        </p>
+        <p class="signature">— Innocent Twagirumukiza</p>
+      </div>
+    </section>
+
+    <section class="cta section" id="acheter">
+      <div class="cta-inner">
+        <p class="eyebrow i18n-fr">DISPONIBLE SUR AMAZON</p>
+        <p class="eyebrow i18n-en">AVAILABLE ON AMAZON</p>
+        <h2 class="i18n-fr">Votre prochaine ligne de code<br><span class="accent">pourrait décoller.</span></h2>
+        <h2 class="i18n-en">Your next line of code<br><span class="accent">could take off.</span></h2>
+        <p class="i18n-fr">Choisissez votre édition et commencez l'aventure.</p>
+        <p class="i18n-en">Choose your edition and start the adventure.</p>
+        <div class="amazon-buttons">
+          <a class="btn btn-amazon" href="https://www.amazon.fr/dp/B0HHYSXQSV" target="_blank" rel="noopener">
+            🇫🇷 Édition française <span>→</span>
+          </a>
+          <a class="btn btn-amazon secondary" href="https://www.amazon.fr/PROGRAMMING-TELLO-DRONE-autonomous-assistant/dp/B0HHXLND46" target="_blank" rel="noopener">
+            🇬🇧 English edition <span>→</span>
+          </a>
+        </div>
+        <p class="amazon-note i18n-fr">Les liens ci-dessus ouvrent directement les pages du livre sur Amazon.fr.</p>
+        <p class="amazon-note i18n-en">The links above open the book's pages directly on Amazon.fr.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">TELLO<span>CODE</span></div>
+    <p class="i18n-fr">Programmer un drone Tello · Innocent Twagirumukiza</p>
+    <p class="i18n-en">Programming a Tello Drone · Innocent Twagirumukiza</p>
+    <p>
+      <span class="i18n-fr">© <span id="year-fr"></span> — Tous droits réservés</span>
+      <span class="i18n-en">© <span id="year-en"></span> — All rights reserved</span>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
