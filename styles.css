@@ -41,7 +41,7 @@ img{max-width:100%;display:block}
 ul{list-style:none}
 
 /* ---------- NAV ---------- */
-.nav{padding:18px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative}
+.nav{padding:18px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid color-mix(in srgb, var(--ink) 12%, transparent)}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
 .brand-word{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:calc(14px * var(--fs));line-height:1.15;text-transform:lowercase}
 
